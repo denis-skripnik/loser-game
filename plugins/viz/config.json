@@ -1,0 +1,9 @@
+{
+  "active": true,
+  "fee": 5,
+"maximum_number": 3,
+  "node": "wss://viz.lexa.host/ws",
+  "login": "loser",
+  "posting_key": "5J",
+  "active_key": "5K"
+}

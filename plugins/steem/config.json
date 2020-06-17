@@ -1,0 +1,9 @@
+{
+  "active": false,
+  "fee": 5,
+  "maximum_number": 3,
+  "node": "https://steemd.minnowsupportproject.org",
+    "login": "loser-game",
+    "posting_key": "5H",
+    "active_key": "5J"
+}
