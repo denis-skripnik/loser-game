@@ -19,15 +19,18 @@ async function getOpsInBlock(bn) {
   }
   
 async function updateAccount(pk,test_user) {
+    let acc = await getAccount(test_user);
+    acc = acc[0];
     let 					metadata={};
     metadata.profile={};
     metadata.profile.name = 'Loser service';
-    metadata.profile.profile_image = "https://images.viz.io/DQmaACdPBziT6tgpJ1QWSFpms4pXQWzFUYvKY7KVQUNLA2H/2343887_0.jpg";
-    metadata.profile.cover_image = "https://images.viz.io/DQmPxUB81uPPhehdf7eye7BucRNCBoLH6w1Lvf3iuMkVj6b/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.jpg";
+    metadata.profile.profile_image = "https://images.golos.io/DQmaACdPBziT6tgpJ1QWSFpms4pXQWzFUYvKY7KVQUNLA2H/2343887_0.jpg";
+    metadata.profile.cover_image = "https://images.golos.io/DQmPxUB81uPPhehdf7eye7BucRNCBoLH6w1Lvf3iuMkVj6b/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.jpg";
     metadata.profile.about= `Раунды вы создаёте сами, отправляя суммы. Если суммы такой нет, происходит создание нового. Если есть, присоединяетесь к существующему.`;
-    metadata.profile.pinnedPosts = ["stats/rounds"];
     let json_metadata=JSON.stringify(metadata);
+    if (json_metadata !== acc.json_metadata) {
     return await viz.broadcast.accountMetadataAsync(pk,test_user,json_metadata);
+    }
 }
 
 async function getAccount(login) {

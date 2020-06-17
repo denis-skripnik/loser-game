@@ -89,7 +89,6 @@ jsonMetadata.tags = ["ru--megagalxyan","ru--igra","game","ru--statistika"];
             newTx.push(['comment', {parent_author: parentAuthor, parent_permlink: parentPermlink,author:conf.login,permlink, title, body, json_metadata: JSON.stringify(jsonMetadata)}]);
             if (isUpdate === false) {
         const extensions = [];
-                extensions.push([2,{percent:5000}]);
         newTx.push(['comment_options', {author:conf.login,permlink, 'max_accepted_payout':'1000000.000 GBG','percent_steem_dollars':10000,'allow_votes':true,'allow_curation_rewards':true,extensions}]);
             }    
         const current = await getProps();

@@ -138,15 +138,6 @@ setInterval(() => {
     last_bn = bn;
 }, SUPER_LONG_DELAY);
 
-async function isActivePlugin() {
-if (conf.active === true) {
-    getNullTransfers()
-methods.updateAccount(conf.posting_key, conf.login);
-} else {
-console.log('Is not active plugin Steem.');
-}
-}
-
 async function forPage(rounds_type) {
     let a_arr = [];
             if (rounds_type === 'active') {
@@ -227,11 +218,20 @@ await finished.removeAmounts();
 } // end if rounds > 0.
     }
     
-    new CronJob('0 0 0 * * *', finishedRounds, null, true);
-new CronJob('0 0 6 * * *', finishedRounds, null, true);
-new CronJob('0 0 12 * * *', finishedRounds, null, true);
-new CronJob('0 0 18 * * *', finishedRounds, null, true);
+    async function isActivePlugin() {
+        if (conf.active === true) {
+            getNullTransfers()
+        methods.updateAccount(conf.posting_key, conf.login);
+        new CronJob('0 0 0 * * *', finishedRounds, null, true);
+        new CronJob('0 0 6 * * *', finishedRounds, null, true);
+        new CronJob('0 0 12 * * *', finishedRounds, null, true);
+        new CronJob('0 0 18 * * *', finishedRounds, null, true);
+        
+        setInterval(() => servicePost(), 300000);
+        } else {
+        console.log('Is not active plugin Steem.');
+        }
+        }
 
-setInterval(() => servicePost(), 300000);
-module.exports.isActivePlugin = isActivePlugin;
+        module.exports.isActivePlugin = isActivePlugin;
 module.exports.forPage = forPage;
